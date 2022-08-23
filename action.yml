@@ -1,0 +1,21 @@
+name: cairo-format-action
+description: Run cairo-format check on Cairo source files
+inputs:
+  target:
+    description: The directory containing .cairo files to be checked for formatting, relative to the repo root.
+    default: contracts
+    type: string
+  cairo-version:
+    description: cairo-lang package version to be installed. Action uses the latest published one by default.
+  cairo-format-args:
+    description: Additional arguments passed to cairo-format
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.target }}
+    - ${{ inputs.cairo-version }}
+    - ${{ inputs.cairo-format-args }}
+branding:
+  icon: align-left
+  color: green
